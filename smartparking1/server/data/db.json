@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "id": "u-admin",
+      "name": "Shimpi",
+      "email": "shimpi@example.com",
+      "username": "shimpi",
+      "password": "1234",
+      "createdAt": "2026-04-10T00:00:00.000Z"
+    }
+  ],
+  "slots": [
+    {
+      "id": "P1",
+      "name": "Downtown Plaza",
+      "address": "452 MG Road, Mumbai",
+      "city": "Mumbai",
+      "floor": "B1",
+      "total": 24,
+      "free": 18,
+      "pricePerHour": 50
+    },
+    {
+      "id": "P2",
+      "name": "Central Station",
+      "address": "12 Station Rd, Mumbai",
+      "city": "Mumbai",
+      "floor": "G",
+      "total": 40,
+      "free": 31,
+      "pricePerHour": 35
+    },
+    {
+      "id": "P3",
+      "name": "Skyline Mall",
+      "address": "89 Linking Rd, Mumbai",
+      "city": "Mumbai",
+      "floor": "L2",
+      "total": 60,
+      "free": 2,
+      "pricePerHour": 40
+    },
+    {
+      "id": "P4",
+      "name": "Green Park Deck",
+      "address": "102 FC Road, Pune",
+      "city": "Pune",
+      "floor": "G",
+      "total": 30,
+      "free": 22,
+      "pricePerHour": 25
+    },
+    {
+      "id": "P5",
+      "name": "Grand Hotel",
+      "address": "5 Juhu Ave, Mumbai",
+      "city": "Mumbai",
+      "floor": "B2",
+      "total": 15,
+      "free": 9,
+      "pricePerHour": 80
+    },
+    {
+      "id": "P6",
+      "name": "Arts District",
+      "address": "22 Hauz Khas, Delhi",
+      "city": "Delhi",
+      "floor": "L1",
+      "total": 35,
+      "free": 19,
+      "pricePerHour": 45
+    },
+    {
+      "id": "P7",
+      "name": "West End Point",
+      "address": "77 Anna Salai, Chennai",
+      "city": "Chennai",
+      "floor": "G",
+      "total": 20,
+      "free": 1,
+      "pricePerHour": 60
+    },
+    {
+      "id": "P8",
+      "name": "Library Plaza",
+      "address": "200 MG Road, Bengaluru",
+      "city": "Bengaluru",
+      "floor": "B1",
+      "total": 45,
+      "free": 30,
+      "pricePerHour": 30
+    }
+  ],
+  "bookings": [
+    {
+      "id": "BK-789766",
+      "userId": "u-admin",
+      "slotId": "P1",
+      "vehicleType": "car",
+      "vehicleNo": "MH02-AB-1234",
+      "date": "2026-04-09",
+      "time": "04:49",
+      "duration": 2,
+      "subtotal": 100,
+      "serviceCharge": 10,
+      "total": 110,
+      "paymentMethod": "upi",
+      "startAt": 1775690340000,
+      "endAt": 1775697540000,
+      "createdAt": "2026-04-09T23:19:49.766Z",
+      "status": "cancelled"
+    }
+  ]
+}
