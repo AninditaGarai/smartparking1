@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import express from "express";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import { requireAdmin, requireAuth } from "./middleware/auth.js";
 import { Booking } from "./models/Booking.js";
@@ -23,6 +25,9 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/smartp
 
 app.use(cors());
 app.use(express.json());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function signToken(user) {
   return jwt.sign({ sub: user._id.toString(), role: user.role }, process.env.JWT_SECRET, {
@@ -670,6 +675,13 @@ app.get("/api/admin/bookings/:bookingCode", requireAuth, requireAdmin, async (re
         : null,
     },
   });
+});
+
+// Serve built frontend (dist) for any non-API routes
+app.use(express.static(path.join(__dirname, "..", "dist")));
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith("/api")) return next();
+  return res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
 
 async function start() {
