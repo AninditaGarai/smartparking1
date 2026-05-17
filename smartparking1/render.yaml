@@ -1,0 +1,19 @@
+# Render service definition for smartparking1
+services:
+  - type: web
+    name: smartparking-render
+    env: docker
+    plan: free
+    repo: https://github.com/AninditaGarai/smartparking1
+    branch: main
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    # Render will build the Docker image using the repository Dockerfile.
+    # Set the following environment variables in the Render dashboard after import:
+    envVars:
+      - key: MONGODB_URI
+        value: REPLACE_WITH_YOUR_MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        value: REPLACE_WITH_A_STRONG_SECRET
+        sync: false
