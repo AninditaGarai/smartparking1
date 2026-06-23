@@ -677,13 +677,6 @@ app.get("/api/admin/bookings/:bookingCode", requireAuth, requireAdmin, async (re
   });
 });
 
-// Serve built frontend (dist) for any non-API routes
-app.use(express.static(path.join(__dirname, "..", "dist")));
-app.get("*", (req, res, next) => {
-  if (req.path.startsWith("/api")) return next();
-  return res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
-});
-
 async function start() {
   await mongoose.connect(MONGODB_URI);
   console.log(`MongoDB connected -> ${MONGODB_URI}`);
