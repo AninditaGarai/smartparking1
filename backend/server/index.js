@@ -12,6 +12,8 @@ import { Booking } from "./models/Booking.js";
 import { Slot } from "./models/Slot.js";
 import { User } from "./models/User.js";
 
+// Load env vars from .env file if it exists (for local dev)
+// In production, Render injects env vars directly
 dotenv.config();
 
 if (!process.env.JWT_SECRET) {

@@ -9,15 +9,7 @@ services:
     dockerContext: ./backend
     dockerfilePath: ./backend/Dockerfile
     autoDeploy: true
-    # Render will build the Docker image using the repository Dockerfile.
-    # Set the following environment variables in the Render dashboard after import:
-    envVars:
-      - key: MONGODB_URI
-        value: REPLACE_WITH_YOUR_MONGODB_URI
-        sync: false
-      - key: JWT_SECRET
-        value: REPLACE_WITH_A_STRONG_SECRET
-        sync: false
-      - key: PORT
-        value: 5000
-        sync: false
+    # IMPORTANT: Set these environment variables in the Render dashboard after import:
+    # - MONGODB_URI: Your MongoDB connection string
+    # - JWT_SECRET: A strong secret key for JWT
+    # - PORT: 5000
