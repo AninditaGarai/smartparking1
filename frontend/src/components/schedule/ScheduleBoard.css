@@ -1,0 +1,278 @@
+.sch-shell {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.sch-header,
+.sch-grid-card,
+.sch-drawer,
+.sch-analytics {
+  border: 1px solid var(--line);
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.sch-header {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.sch-title {
+  margin: 0;
+  font-size: 29px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.sch-subtitle {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.sch-muted { color: var(--text-soft); }
+
+.sch-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sch-toggle {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  overflow: hidden;
+  display: inline-flex;
+  background: var(--bg-soft);
+}
+
+.sch-toggle button,
+.sch-header button,
+.sch-drawer button {
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 8px 11px;
+  min-height: 36px;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.14s ease;
+}
+
+.sch-toggle button:hover,
+.sch-header button:hover,
+.sch-drawer button:hover {
+  background: color-mix(in srgb, var(--bg-soft) 80%, var(--brand) 20%);
+  border-color: color-mix(in srgb, var(--line) 65%, var(--brand) 35%);
+  transform: translateY(-1px);
+}
+
+.sch-toggle button {
+  border: none;
+  border-radius: 0;
+}
+
+.sch-toggle button.active {
+  background: color-mix(in srgb, var(--brand) 15%, white 85%);
+  color: color-mix(in srgb, var(--brand) 82%, black 18%);
+  font-weight: 700;
+}
+
+.sch-grid-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 14px;
+}
+
+.sch-grid {
+  display: grid;
+  grid-template-columns: 64px repeat(7, minmax(76px, 1fr));
+  overflow: auto;
+  border-radius: 14px;
+}
+
+.sch-head,
+.sch-time,
+.sch-slot {
+  border-right: 1px solid color-mix(in srgb, var(--line) 85%, transparent 15%);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 85%, transparent 15%);
+}
+
+.sch-head {
+  padding: 8px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: color-mix(in srgb, var(--bg-soft) 70%, var(--card-bg) 30%);
+}
+
+.sch-head.today {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.sch-time {
+  padding: 8px 6px;
+  font-size: 11px;
+  color: var(--text-soft);
+  background: color-mix(in srgb, var(--bg-soft) 62%, var(--card-bg) 38%);
+}
+
+.sch-slot {
+  min-height: 58px;
+  padding: 4px;
+}
+
+.sch-empty,
+.sch-appt {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 9px;
+  border: 1px dashed color-mix(in srgb, var(--line) 85%, transparent 15%);
+  background: color-mix(in srgb, var(--bg-soft) 78%, var(--card-bg) 22%);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.16s ease, transform 0.14s ease, box-shadow 0.16s ease;
+}
+
+.sch-empty:hover,
+.sch-appt:hover {
+  border-color: color-mix(in srgb, var(--line) 62%, var(--brand) 38%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+
+.sch-appt { border-style: solid; }
+
+.sch-appt.new {
+  background: color-mix(in srgb, #2e9e64 16%, var(--bg-panel) 84%);
+  border-color: color-mix(in srgb, #2e9e64 45%, var(--line) 55%);
+}
+
+.sch-appt.followup {
+  background: color-mix(in srgb, #7c56e8 15%, var(--bg-panel) 85%);
+  border-color: color-mix(in srgb, #7c56e8 46%, var(--line) 54%);
+}
+
+.sch-appt.urgent {
+  background: color-mix(in srgb, #d54545 15%, var(--bg-panel) 85%);
+  border-color: color-mix(in srgb, #d54545 44%, var(--line) 56%);
+}
+
+.sch-appt.lab {
+  background: color-mix(in srgb, #b97811 15%, var(--bg-panel) 85%);
+  border-color: color-mix(in srgb, #b97811 45%, var(--line) 55%);
+}
+
+.sch-appt-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sch-appt-sub {
+  font-size: 11px;
+  opacity: 0.9;
+  color: var(--text-soft);
+}
+
+.sch-drawer {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.sch-drawer-title {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+.sch-lv-label {
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.sch-lv-value {
+  color: var(--text);
+}
+
+.sch-drawer .primary {
+  background: linear-gradient(90deg, #2f6fed, #4d89f5);
+  border-color: #4d89f5;
+  color: #ffffff;
+}
+
+.sch-analytics { padding: 14px; }
+
+.sch-chart-row { display: grid; gap: 9px; }
+
+.sch-chart-item {
+  display: grid;
+  grid-template-columns: 124px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.sch-track {
+  height: 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg-soft) 82%, var(--line) 18%);
+  overflow: hidden;
+}
+
+.sch-fill {
+  height: 100%;
+  border-radius: 8px;
+}
+
+body[data-theme="dark"] .sch-header,
+body[data-theme="dark"] .sch-grid-card,
+body[data-theme="dark"] .sch-drawer,
+body[data-theme="dark"] .sch-analytics {
+  border-color: #28405a;
+}
+
+body[data-theme="dark"] .sch-toggle button.active {
+  background: #10304a;
+  color: #d8f7ff;
+}
+
+@media (max-width: 1024px) {
+  .sch-grid-shell { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .sch-header {
+    padding: 12px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sch-title { font-size: 24px; }
+
+  .sch-row {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sch-grid {
+    grid-template-columns: 56px repeat(7, minmax(72px, 1fr));
+  }
+
+  .sch-chart-item {
+    grid-template-columns: 104px 1fr 40px;
+    font-size: 11px;
+  }
+}
