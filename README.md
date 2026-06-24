@@ -111,3 +111,92 @@ The backend provides the following API endpoints:
 ## License
 
 MIT
+
+## Deployment Issues & Troubleshooting
+
+### Issues Encountered During Deployment
+
+#### 1. TypeScript Build Error in Vercel
+**Error**: `error TS2688: Cannot find type definition file for 'node'`
+
+**Cause**: Missing `@types/node` dependency in frontend package.json
+
+**Fix**: Added `@types/node` to frontend devDependencies
+```json
+"devDependencies": {
+  "@types/node": "^24.12.0",
+  ...
+}
+```
+
+#### 2. Express Wildcard Route Error
+**Error**: `PathError [TypeError]: Missing parameter name at index 1: *`
+
+**Cause**: Backend had wildcard route `app.get("*", ...)` for serving frontend, which is incompatible with newer Express versions when frontend/backend are separated
+
+**Fix**: Removed frontend serving code from backend since they are now deployed separately
+```javascript
+// Removed these lines from backend/server/index.js:
+// app.use(express.static(path.join(__dirname, "..", "dist")));
+// app.get("*", (req, res, next) => { ... });
+```
+
+#### 3. Environment Variables Not Loading in Render
+**Error**: `injected env (0) from .env` followed by deployment failure
+
+**Cause**: `render.yaml` contained placeholder environment variables that shouldn't be in the file. Environment variables must be set in Render dashboard, not in YAML
+
+**Fix**: Removed placeholder env vars from `render.yaml` and added instructions to set them in Render dashboard
+```yaml
+# Before (incorrect):
+envVars:
+  - key: MONGODB_URI
+    value: REPLACE_WITH_YOUR_MONGODB_URI
+
+# After (correct):
+# IMPORTANT: Set these environment variables in the Render dashboard after import:
+# - MONGODB_URI: Your MongoDB connection string
+# - JWT_SECRET: A strong secret key for JWT
+# - PORT: 5000
+```
+
+#### 4. MongoDB Connection Error
+**Error**: `Startup failed: connect ECONNREFUSED 127.0.0.1:27017`
+
+**Cause**: `MONGODB_URI` environment variable not set in Render dashboard, causing fallback to localhost MongoDB which doesn't exist in production
+
+**Fix**: Set actual MongoDB connection string in Render dashboard:
+- Go to Render service → Settings → Environment Variables
+- Add `MONGODB_URI` with your MongoDB Atlas connection string
+- Add `JWT_SECRET` with a strong secret key
+- Add `PORT` with value `5000`
+
+### How to Set Up MongoDB Atlas (Required for Production)
+
+1. Create account at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+2. Create free M0 cluster
+3. Create database user with username/password
+4. Whitelist IP `0.0.0.0/0` for access
+5. Get connection string from Database → Connect
+6. Format: `mongodb+srv://user:password@cluster0.xxxxx.mongodb.net/smartparking`
+7. Add to Render as `MONGODB_URI` environment variable
+
+### Current Deployment Status
+
+- ✅ Frontend structure ready for Vercel
+- ✅ Backend structure ready for Render
+- ✅ TypeScript build issues resolved
+- ✅ Routing errors fixed
+- ✅ Environment variable configuration corrected
+- ⏳ MongoDB connection setup required (user action needed)
+
+### Next Steps for Successful Deployment
+
+1. Set up MongoDB Atlas free tier
+2. Add `MONGODB_URI` to Render environment variables
+3. Add `JWT_SECRET` to Render environment variables
+4. Add `PORT=5000` to Render environment variables
+5. Deploy backend to Render
+6. Get Render backend URL
+7. Add `VITE_API_URL` to Vercel with backend URL
+8. Deploy frontend to Vercel
